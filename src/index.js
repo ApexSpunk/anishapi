@@ -6,6 +6,7 @@ const cors = require('cors');
 const userRoute = require('./routes/user.route');
 const ProductRoute = require('./routes/product.route');
 const CartRoute = require('./routes/cart.route');
+const AdoraaRoute = require('./routes/adoraa.route');
 
 
 const app = express();
@@ -14,11 +15,12 @@ app.use(cors());
 app.use('/user', userRoute);
 app.use('/products', ProductRoute);
 app.use('/cart', CartRoute);
+app.use('/adoraa', AdoraaRoute);
 
 
 
 app.get('/', (req, res) => {
-    res.send({ 'success': 'Hello Anish' });
+    res.send({ 'success': 'Hell0' });
 });
 
 
