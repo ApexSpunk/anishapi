@@ -4,7 +4,7 @@ const User = require('../models/user.model');
 
 
 app.post("/register", async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, phone } = req.body;
     try {
         const user = await User.findOne({ email })
         if (user) {
@@ -13,7 +13,7 @@ app.post("/register", async (req, res) => {
             const newUser = new User({
                 name,
                 email,
-                password
+                phone
             })
             await newUser.save()
             res.status(200).send({ message: `${newUser.type === "admin" ? "Admin" : "User"} Signup Successful`, user: { name: newUser.name, email: newUser.email, type: newUser.type, _id: newUser._id } })
