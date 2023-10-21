@@ -24,13 +24,13 @@ app.post("/register", async (req, res) => {
 })
 
 app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    const { phone } = req.body;
     try {
-        const user = await User.findOne({ email, password })
+        const user = await User.findOne({ phone })
         if (user) {
-            res.status(200).send({ message: "Login Successful", user: { name: user.name, email: user.email, _id: user._id } })
+            res.status(200).send({ message: "User Found", user: { name: user.name, email: user.email, type: user.type, _id: user._id } })
         } else {
-            res.status(401).send({ message: "Invalid Credentails" })
+            res.status(401).send({ message: "User Not Found" })
         }
     } catch (error) {
         res.status(401).send({ message: "Login Failed Please Try Again" })
