@@ -25,6 +25,15 @@ app.get("/:slug", async (req, res) => {
     }
 })
 
+app.put("/:id", async (req, res) => {
+    try{
+        const updatedProduct = await Product.findByIdAndDelete(req.params.id, req.body, { new: true });
+        res.status(200).send({ success: true, product:updatedProduct });
+    } catch (error) {
+        res.status(500).send({ success: false, message: "Something went wrong" });
+    }
+})
+
 app.post("/", async (req, res) => {
     try {
         const product = await Product.create({ ...req.body, slug: req.body.title.toLowerCase().split(" ").join("-") });
